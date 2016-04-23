@@ -40,9 +40,9 @@ module Rack
         def with_rescues
           rescue_connection_failure { yield }
         rescue Mongo::GridFileNotFound, BSON::InvalidObjectId => e
-          [ 404, {'Content-Type' => 'text/plain'}, ["File not found. #{e}"] ]
+          [ 404, {'Content-Type' => 'text/plain'}, ["File not found."] ]
         rescue Mongo::GridError => e
-          [ 500, {'Content-Type' => 'text/plain'}, ["An error occured. #{e}"] ]
+          [ 500, {'Content-Type' => 'text/plain'}, ["An error occured."] ]
         end
 
         def rescue_connection_failure(max_retries=60)
